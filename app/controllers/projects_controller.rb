@@ -51,6 +51,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to projects_url, notice: 'Project was successfully created.' }
         format.json { render action: 'show', status: :created, location: @project }
       else
+        format.js { render layout: false }
         format.html { render action: 'new' }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
@@ -76,6 +77,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_to do |format|
+      format.js { render layout: false }
       format.html { redirect_to projects_url }
       format.json { head :no_content }
     end
